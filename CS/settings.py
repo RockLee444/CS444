@@ -25,7 +25,7 @@ SECRET_KEY = '^yk*5qpprqp%@v%o+7b@d%gzmy-%3*&90%erxl*&=dyus*t7kk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','54.174.96.19']
 
 
 # Application definition
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'CS.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rocklee444db',
+        'USER': 'postgres',
+        'PASSWORD': 'luciFer1523',
+        'HOST': 'rocklee444-instance.c7mkjub5ma8k.us-east-1.rds.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
