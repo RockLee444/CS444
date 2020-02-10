@@ -36,6 +36,7 @@ class CustomAuthToken(ObtainAuthToken):
         })
 
 class Example2List(APIView):
+    
     def get(self,request,format=None):
         print("Realizando consulta...")
         queryset = Example2.objects.filter(delete=False)
@@ -43,4 +44,11 @@ class Example2List(APIView):
         serializer = Example2Serializer(queryset,many=True)
         return Response(serializer.data)
 
+    def post(self,request,format=None):
+        serializer = Example2Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            newData = serializer.data
+            return Response(newData)
+        return Response(serializer.errors, status  = status.HTTP_400_BAD_REQUEST)
     
