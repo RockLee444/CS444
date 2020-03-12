@@ -38,27 +38,34 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'rest_framework.authtoken',
     'Login',
     'Profile',
-    'rest_framework_swagger',
+    # 'storages',
 ]
 
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
-'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
-'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-'PAGE_SIZE': 100,
+    'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.AllowAny',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'PAGE_SIZE': 100,
+
+    'DEFAULT_PARSER_CLASSES':[
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser'
+    ]
 }
 
 CORS_ALLOW_METHODS = (
-'DELETE',
-'GET',
-'POST',
-'PUT',
+    'DELETE',
+    'GET',
+    'POST',
+    'PUT',
 )
 
 MIDDLEWARE = [
@@ -157,3 +164,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+
+
+#AMAZON S3
+
+# AWS_ACCESS_KEY_ID = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = 'rocklee444bucket-static'
+# AWS_S3_CUSTOM_DOMAIN = 'rocklee444bucket-static.s3.amazonaws.com' 
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# ]
+# STATIC_URL = 'http://rocklee444bucket-static.s3-website-us-east-1.amazonaws.com/' 
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
